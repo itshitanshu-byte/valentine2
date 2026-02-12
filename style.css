@@ -9,8 +9,65 @@
 body {
     font-family: "Roboto", serif;
     background-color: #FFC6C6;
-    overflow: hidden; /* prevents scroll from hearts */
+    overflow: hidden;
 }
+
+/* ================= PIN SCREEN ================= */
+
+.pin-container {
+    position: fixed;
+    inset: 0;
+    background-color: #FFC6C6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.pin-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 300px;
+}
+
+.pin-box h2 {
+    margin-bottom: 15px;
+}
+
+.pin-box input {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.pin-box button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.pin-box button:hover {
+    background: #e63e5c;
+}
+
+#errorMsg {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+}
+
+/* ================= ENVELOPE SYSTEM ================= */
 
 .card-wrapper {
     perspective: 1000px;
@@ -114,7 +171,7 @@ body {
     width: 300px;
     height: 200px;
     background-color: #fff;
-    display: grid;
+    display: none; /* Hidden until PIN correct */
     place-content: center;
     cursor: pointer;
     position: absolute;
@@ -149,7 +206,6 @@ body {
         transform: translateY(-75%) rotate(-90deg);
         z-index: -1;
     }
-
     100% {
         transform: translateY(0) rotate(0deg);
         z-index: 10;
@@ -161,12 +217,10 @@ body {
         z-index: 10;
         transform: rotate(0deg);
     }
-
     50% {
         transform: translateY(-75%) rotate(-90deg);
         z-index: -1;
     }
-
     100% {
         transform: translateY(0) rotate(-90deg);
     }
@@ -244,9 +298,7 @@ body {
     transition: opacity 2s ease;
 }
 
-/* ===============================
-   FLOATING HEARTS BACKGROUND
-================================= */
+/* ================= FLOATING HEARTS ================= */
 
 .floating-heart {
     position: fixed;
@@ -269,4 +321,3 @@ body {
         opacity: 0;
     }
 }
-
