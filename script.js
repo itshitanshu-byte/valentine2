@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const envelope = document.getElementById("envelope");
     const letter = document.querySelector(".letter");
 
-    /* ================= PIN SYSTEM ================= */
+    /* ================= PIN ================= */
 
     window.checkPin = function () {
         const userPin = document.getElementById("pinInput").value;
@@ -18,25 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    const pinInput = document.getElementById("pinInput");
-    pinInput.addEventListener("keypress", function (e) {
-        if (e.key === "Enter") {
-            checkPin();
-        }
-    });
+    document.getElementById("pinInput")
+        .addEventListener("keypress", function (e) {
+            if (e.key === "Enter") checkPin();
+        });
 
-    /* ================= ENVELOPE CLICK SYSTEM ================= */
+    /* ================= LETTER ANIMATION ================= */
 
-    let isOpen = false;
-
-    envelope.addEventListener("click", function () {
-        isOpen = true;
-        letter.classList.add("open");
+    envelope.addEventListener("mouseenter", function () {
+        letter.style.transform = "translateX(-50%) translateY(-180px)";
     });
 
     envelope.addEventListener("mouseleave", function () {
-        isOpen = false;
-        letter.classList.remove("open");
+        letter.style.transform = "translateX(-50%) translateY(0)";
     });
 
     /* ================= FLOATING HEARTS ================= */
@@ -52,5 +46,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setInterval(createFloatingHeart, 400);
-
 });
