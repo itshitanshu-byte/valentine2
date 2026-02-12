@@ -9,6 +9,8 @@
 body {
     font-family: "Roboto", serif;
     background-color: #FFC6C6;
+    overflow: hidden; /* prevents scroll from hearts */
+    position: relative;
 }
 
 .card-wrapper {
@@ -103,7 +105,8 @@ body {
     font-size: 10px;
     font-weight: 300;
 }
-.card-body p+p {
+
+.card-body p + p {
     margin-top: 10px;
 }
 
@@ -120,6 +123,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 0 1px #000;
+    z-index: 5;
 }
 
 .envelope::after {
@@ -166,7 +170,6 @@ body {
 
     100% {
         transform: translateY(0) rotate(-90deg);
-
     }
 }
 
@@ -210,39 +213,23 @@ body {
     transform: rotateX(180deg);
     transition-delay: 100ms;
     animation: open-lid-stacking 500ms forwards;
-
 }
 
 .envelope:not(:hover) .envelope-lid-secondary {
     animation: close-lid-stacking 1250ms forwards;
-
 }
 
 @keyframes open-lid-stacking {
-    50% {
-        z-index: 1;
-    }
-
-    100% {
-        z-index: -1;
-    }
+    50% { z-index: 1; }
+    100% { z-index: -1; }
 }
 
 @keyframes close-lid-stacking {
-
-    0%,
-    50% {
-        z-index: -2;
-
-    }
-
-    100% {
-        z-index: 1;
-    }
+    0%, 50% { z-index: -2; }
+    100% { z-index: 1; }
 }
 
 /* Heart Seal */
-
 .heart-seal {
     position: absolute;
     top: 37%;
@@ -256,4 +243,30 @@ body {
     z-index: 2;
     opacity: 1;
     transition: opacity 2s ease;
+}
+
+/* ===============================
+   FLOATING HEARTS BACKGROUND
+================================= */
+
+.floating-heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    color: #ff4d6d;
+    opacity: 0.7;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+    z-index: 0;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.4);
+        opacity: 0;
+    }
 }
