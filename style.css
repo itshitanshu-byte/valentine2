@@ -58,7 +58,7 @@ body {
 /* ================= ENVELOPE ================= */
 
 .envelope {
-    width: 300px;
+    width: 320px;
     height: 200px;
     background-color: white;
     position: absolute;
@@ -68,79 +68,62 @@ body {
     display: none;
     box-shadow: 0 0 0 1px #000;
     cursor: pointer;
+    overflow: hidden;
 }
 
+/* Envelope bottom shape */
 .envelope::after {
     content: '';
     position: absolute;
     inset: 0;
     border-top: 75px solid transparent;
-    border-right: 150px solid white;
+    border-right: 160px solid white;
     border-bottom: 125px solid white;
-    border-left: 150px solid white;
+    border-left: 160px solid white;
 }
 
+/* Top lid */
 .envelope-lid {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
     background: white;
-    clip-path: polygon(50% 38%, 0 0, 100% 0);
-    transition: transform 0.6s;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
     transform-origin: top;
+    transition: transform 0.5s ease;
+    z-index: 3;
 }
 
+/* Open lid on hover */
 .envelope:hover .envelope-lid {
     transform: rotateX(180deg);
 }
 
-/* CARD */
+/* ================= LETTER ================= */
 
-.card-wrapper {
-    perspective: 1000px;
-}
-
-.card {
-    width: 180px;
-    height: 280px;
-    background: white;
+.letter {
     position: absolute;
-    top: -80px;
+    width: 260px;
+    height: 160px;
+    background: white;
     left: 50%;
-    transform: translateX(-50%);
-    transition: transform 0.6s;
+    bottom: 0;
+    transform: translateX(-50%) translateY(0);
+    transition: transform 0.5s ease;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 2;
 }
 
-.envelope:hover .card {
-    transform: translateX(-50%) translateY(-100px);
+.letter.open {
+    transform: translateX(-50%) translateY(-180px);
 }
 
-.card-cover {
-    position: absolute;
-    inset: 0;
-    transform-origin: left;
-    transition: transform 0.6s;
-}
-
-.envelope:hover .card-cover {
-    transform: rotateY(-135deg);
-}
-
-.card-side {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    backface-visibility: hidden;
-    background: white;
-}
-
-.card-side-secondary {
-    transform: rotateY(180deg);
-}
-
-.main-title {
-    font-family: "Petemoss", serif;
-    font-size: 48px;
+.letter-content {
+    font-family: "Shantell Sans", serif;
+    font-size: 14px;
 }
 
 /* HEART SEAL */
@@ -154,6 +137,7 @@ body {
     height: 30px;
     background: red;
     clip-path: polygon(50% 15%, 90% 40%, 75% 85%, 50% 100%, 25% 85%, 10% 40%);
+    z-index: 4;
 }
 
 /* FLOATING HEARTS */
