@@ -68,10 +68,10 @@ body {
     display: none;
     box-shadow: 0 0 0 1px #000;
     cursor: pointer;
-    overflow: hidden;
+    overflow: visible;
 }
 
-/* Envelope bottom shape */
+/* Envelope bottom */
 .envelope::after {
     content: '';
     position: absolute;
@@ -80,6 +80,7 @@ body {
     border-right: 160px solid white;
     border-bottom: 125px solid white;
     border-left: 160px solid white;
+    z-index: 1;
 }
 
 /* Top lid */
@@ -96,7 +97,7 @@ body {
     z-index: 3;
 }
 
-/* Open lid on hover */
+/* Lid opens when hovering */
 .envelope:hover .envelope-lid {
     transform: rotateX(180deg);
 }
@@ -111,22 +112,20 @@ body {
     left: 50%;
     bottom: 0;
     transform: translateX(-50%) translateY(0);
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
     padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     z-index: 2;
-}
-
-.letter.open {
-    transform: translateX(-50%) translateY(-180px);
+    border-radius: 6px;
 }
 
 .letter-content {
     font-family: "Shantell Sans", serif;
     font-size: 14px;
+    line-height: 1.4;
 }
 
-/* HEART SEAL */
+/* ================= HEART SEAL ================= */
 
 .heart-seal {
     position: absolute;
@@ -140,7 +139,7 @@ body {
     z-index: 4;
 }
 
-/* FLOATING HEARTS */
+/* ================= FLOATING HEARTS ================= */
 
 .floating-heart {
     position: fixed;
