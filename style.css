@@ -1,63 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Card</title>
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Petemoss&family=Roboto:wght@100..900&family=Shantell+Sans:wght@300..800&display=swap" rel="stylesheet">
+body {
+    font-family: "Roboto", serif;
+    background-color: #FFC6C6;
+    overflow: hidden;
+}
 
-    <link rel="stylesheet" href="style.css">
-</head>
+/* ================= PIN SCREEN ================= */
 
-<body>
+.pin-container {
+    position: fixed;
+    inset: 0;
+    background-color: #FFC6C6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-    <!-- 🔐 PIN SCREEN -->
-    <div class="pin-container">
-        <div class="pin-box">
-            <h2>Enter Secret PIN ❤️</h2>
-            <input type="password" id="pinInput" maxlength="6" placeholder="******">
-            <button onclick="checkPin()">Unlock</button>
-            <p id="errorMsg"></p>
-        </div>
-    </div>
+.pin-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 300px;
+}
 
-    <!-- 💌 ENVELOPE -->
-    <div class="envelope">
-        <div class="envelope-lid"></div>
-        <div class="envelope-lid envelope-lid-secondary"></div>
+.pin-box h2 {
+    margin-bottom: 20px;
+}
 
-        <div class="card-wrapper">
-            <div class="card">
-                <div class="card-cover">
-                    <div class="card-side card-side-primary">
-                        <h1 class="card-title">
-                            <span class="card-title-secondary">Happy</span>
-                            <span class="card-title-main">
-                                Valentine 
-                                <span class="card-title-apostrophe">❤️</span>s
-                            </span>
-                            <span class="card-title-secondary">Day</span>
-                        </h1>
-                    </div>
-                    <div class="card-side card-side-secondary"></div>
-                </div>
+.pin-box input {
+    width: 100%;
+    padding: 12px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
 
-                <div class="card-body">
-                    <p>To my love,</p>
-                    <p>
-                        From the moment I first saw you, I knew I wanted to spend forever with you.
-                        Here's to a lifetime of love, laughter, and happiness.
-                    </p>
-                    <p>Happy Valentine's Day! ❤️</p>
-                </div>
-            </div>
-        </div>
+.pin-box button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff4d6d;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-        <div class="heart-seal"></div>
-    </div>
+.pin-box button:hover {
+    background-color: #e63e5c;
+}
 
-    <script src="script.js"></script>
+#errorMsg {
+    color: red;
+    margin-top: 10px;
+}
 
-</body>
-</html>
+/* ================= ENVELOPE ================= */
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+    display: none;
+    place-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px #000;
+    cursor: pointer;
+}
+
+.envelope::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-top: 75px solid transparent;
+    border-right: 150px solid white;
+    border-bottom: 125px solid white;
+    border-left: 150px solid white;
+}
+
+.card-wrapper {
+    perspective: 1000px;
+    transform: rotate(-90deg);
+}
+
+.card {
+    width: 180px;
+    height: 280px;
+    background-color: #fff;
+    border: 1px solid;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.envelope:hover .card {
+    transform: rotateY(-15deg);
+}
+
+.card-cover {
+    position: absolute;
+    inset: 0;
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+
+.envelope:hover .card-cover {
+    transform: rotateY(-135deg);
+}
+
+.card-side {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: white;
+    backface-visibility: hidden;
+}
+
+.card-side-secondary {
+    transform: rotateY(180deg);
+}
+
+.card-title-main {
+    font-family: "Petemoss", serif;
+    font-size: 48px;
+}
+
+/* ================= FLOATING HEARTS ================= */
+
+.floating-heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    color: #ff4d6d;
+    animation: floatUp linear forwards;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
