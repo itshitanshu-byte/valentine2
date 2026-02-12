@@ -33,38 +33,26 @@ body {
     width: 300px;
 }
 
-.pin-box h2 {
-    margin-bottom: 20px;
-}
-
 .pin-box input {
     width: 100%;
     padding: 12px;
-    font-size: 20px;
+    margin-top: 15px;
     text-align: center;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    font-size: 18px;
 }
 
 .pin-box button {
     margin-top: 15px;
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 10px 20px;
     border: none;
-    background-color: #ff4d6d;
+    background: #ff4d6d;
     color: white;
-    border-radius: 8px;
     cursor: pointer;
 }
 
-.pin-box button:hover {
-    background-color: #e63e5c;
-}
-
 #errorMsg {
-    color: red;
     margin-top: 10px;
+    color: red;
 }
 
 /* ================= ENVELOPE ================= */
@@ -72,13 +60,12 @@ body {
 .envelope {
     width: 300px;
     height: 200px;
-    background-color: #fff;
-    display: none;
-    place-content: center;
+    background-color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
     box-shadow: 0 0 0 1px #000;
     cursor: pointer;
 }
@@ -93,29 +80,45 @@ body {
     border-left: 150px solid white;
 }
 
+.envelope-lid {
+    position: absolute;
+    inset: 0;
+    background: white;
+    clip-path: polygon(50% 38%, 0 0, 100% 0);
+    transition: transform 0.6s;
+    transform-origin: top;
+}
+
+.envelope:hover .envelope-lid {
+    transform: rotateX(180deg);
+}
+
+/* CARD */
+
 .card-wrapper {
     perspective: 1000px;
-    transform: rotate(-90deg);
 }
 
 .card {
     width: 180px;
     height: 280px;
-    background-color: #fff;
-    border: 1px solid;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
+    background: white;
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.6s;
 }
 
 .envelope:hover .card {
-    transform: rotateY(-15deg);
+    transform: translateX(-50%) translateY(-100px);
 }
 
 .card-cover {
     position: absolute;
     inset: 0;
     transform-origin: left;
-    transition: transform 0.5s;
+    transition: transform 0.6s;
 }
 
 .envelope:hover .card-cover {
@@ -127,20 +130,33 @@ body {
     inset: 0;
     display: grid;
     place-items: center;
-    background: white;
     backface-visibility: hidden;
+    background: white;
 }
 
 .card-side-secondary {
     transform: rotateY(180deg);
 }
 
-.card-title-main {
+.main-title {
     font-family: "Petemoss", serif;
     font-size: 48px;
 }
 
-/* ================= FLOATING HEARTS ================= */
+/* HEART SEAL */
+
+.heart-seal {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: red;
+    clip-path: polygon(50% 15%, 90% 40%, 75% 85%, 50% 100%, 25% 85%, 10% 40%);
+}
+
+/* FLOATING HEARTS */
 
 .floating-heart {
     position: fixed;
@@ -149,7 +165,6 @@ body {
     color: #ff4d6d;
     animation: floatUp linear forwards;
     pointer-events: none;
-    z-index: -1;
 }
 
 @keyframes floatUp {
