@@ -10,7 +10,6 @@ body {
     font-family: "Roboto", serif;
     background-color: #FFC6C6;
     overflow: hidden; /* prevents scroll from hearts */
-    position: relative;
 }
 
 .card-wrapper {
@@ -257,7 +256,7 @@ body {
     opacity: 0.7;
     pointer-events: none;
     animation: floatUp linear forwards;
-    z-index: 0;
+    z-index: -1;
 }
 
 @keyframes floatUp {
@@ -270,3 +269,4 @@ body {
         opacity: 0;
     }
 }
+
