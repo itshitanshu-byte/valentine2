@@ -9,8 +9,99 @@
 body {
     font-family: "Roboto", serif;
     background-color: #FFC6C6;
-    overflow: hidden; /* prevents scroll from hearts */
+    overflow: hidden;
 }
+
+/* ===============================
+   PIN LOCK SCREEN (Responsive)
+================================= */
+
+.pin-container {
+    position: fixed;
+    inset: 0;
+    background-color: #FFC6C6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    padding: 20px;
+}
+
+.pin-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 350px;
+}
+
+.pin-box h2 {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.pin-box input {
+    width: 100%;
+    padding: 12px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.pin-box input:focus {
+    border-color: #ff4d6d;
+}
+
+.pin-box button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.pin-box button:hover {
+    background-color: #e63e5c;
+}
+
+#errorMsg {
+    color: red;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .pin-box {
+        padding: 30px 20px;
+    }
+
+    .pin-box h2 {
+        font-size: 18px;
+    }
+
+    .pin-box input {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .pin-box button {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+/* ===============================
+   ENVELOPE SYSTEM
+================================= */
 
 .card-wrapper {
     perspective: 1000px;
@@ -33,7 +124,6 @@ body {
     transition-delay: 1750ms;
 }
 
-/* Card cover styling */
 .card-cover {
     position: absolute;
     inset: 0;
@@ -94,7 +184,6 @@ body {
     font-size: 8px;
 }
 
-/* Card body styling */
 .card-body {
     font-family: "Shantell Sans", serif;
     padding: 14px;
@@ -109,12 +198,11 @@ body {
     margin-top: 10px;
 }
 
-/* Envelope styling */
 .envelope {
     width: 300px;
     height: 200px;
     background-color: #fff;
-    display: grid;
+    display: none; /* Hidden until PIN correct */
     place-content: center;
     cursor: pointer;
     position: absolute;
@@ -143,13 +231,11 @@ body {
     animation: hide-card 1000ms forwards;
 }
 
-/* Keyframes */
 @keyframes show-card {
     50% {
         transform: translateY(-75%) rotate(-90deg);
         z-index: -1;
     }
-
     100% {
         transform: translateY(0) rotate(0deg);
         z-index: 10;
@@ -161,18 +247,15 @@ body {
         z-index: 10;
         transform: rotate(0deg);
     }
-
     50% {
         transform: translateY(-75%) rotate(-90deg);
         z-index: -1;
     }
-
     100% {
         transform: translateY(0) rotate(-90deg);
     }
 }
 
-/* Card lid styling */
 .envelope-lid {
     position: absolute;
     inset: 0;
@@ -228,7 +311,6 @@ body {
     100% { z-index: 1; }
 }
 
-/* Heart Seal */
 .heart-seal {
     position: absolute;
     top: 37%;
@@ -245,7 +327,7 @@ body {
 }
 
 /* ===============================
-   FLOATING HEARTS BACKGROUND
+   FLOATING HEARTS
 ================================= */
 
 .floating-heart {
@@ -269,5 +351,3 @@ body {
         opacity: 0;
     }
 }
-
-
