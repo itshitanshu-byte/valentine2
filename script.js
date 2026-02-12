@@ -1,38 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ===============================
-       PIN SYSTEM
-    ================================= */
-
-    function checkPin() {
-        const correctPin = "071125";
-        const userPin = document.getElementById("pinInput").value;
-        const errorMsg = document.getElementById("errorMsg");
-
-        if (userPin === correctPin) {
-            document.querySelector(".pin-container").style.display = "none";
-            document.querySelector(".envelope").style.display = "grid";
-        } else {
-            errorMsg.textContent = "Wrong PIN 💔 Try again!";
-        }
-    }
-
-    // Make function global (for button onclick)
-    window.checkPin = checkPin;
-
-    const pinInput = document.getElementById("pinInput");
-    if (pinInput) {
-        pinInput.addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                checkPin();
-            }
-        });
-    }
-
-    /* ===============================
-       ENVELOPE HOVER LOGIC
-    ================================= */
-
     const envelope = document.querySelector('.envelope');
     const heartSeal = document.querySelector('.heart-seal');
     let timeoutId;
@@ -51,10 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         heartSeal.style.transition = 'opacity 0.3s ease';
     }
-
-    /* ===============================
-       FLOATING HEARTS
-    ================================= */
 
     function createFloatingHeart() {
         const heart = document.createElement("div");
