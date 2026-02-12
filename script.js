@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (userPin === correctPin) {
             document.querySelector(".pin-container").style.display = "none";
-            document.querySelector(".envelope").style.display = "grid";
+            document.querySelector(".envelope").style.display = "block";
         } else {
             errorMsg.textContent = "Wrong PIN 💔 Try again!";
         }
@@ -16,9 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const pinInput = document.getElementById("pinInput");
     pinInput.addEventListener("keypress", function (e) {
-        if (e.key === "Enter") {
-            checkPin();
-        }
+        if (e.key === "Enter") checkPin();
     });
 
     function createFloatingHeart() {
