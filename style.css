@@ -10,7 +10,6 @@ body {
     font-family: "Roboto", serif;
     background-color: #FFC6C6;
     overflow: hidden; /* prevents scroll from hearts */
-    position: relative;
 }
 
 .card-wrapper {
@@ -270,3 +269,4 @@ body {
         opacity: 0;
     }
 }
+
