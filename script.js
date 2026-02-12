@@ -1,24 +1,26 @@
-/* ===============================
-   PIN SYSTEM
-================================= */
-
-function checkPin() {
-    const correctPin = "071125"; // 🔐 Your secret PIN
-    const userPin = document.getElementById("pinInput").value;
-    const errorMsg = document.getElementById("errorMsg");
-
-    if (userPin === correctPin) {
-        document.querySelector(".pin-container").style.display = "none";
-        document.querySelector(".envelope").style.display = "grid";
-    } else {
-        errorMsg.textContent = "Wrong PIN 💔 Try again!";
-    }
-}
-
-/* Allow Enter key to unlock */
 document.addEventListener("DOMContentLoaded", function () {
-    const pinInput = document.getElementById("pinInput");
 
+    /* ===============================
+       PIN SYSTEM
+    ================================= */
+
+    function checkPin() {
+        const correctPin = "071125";
+        const userPin = document.getElementById("pinInput").value;
+        const errorMsg = document.getElementById("errorMsg");
+
+        if (userPin === correctPin) {
+            document.querySelector(".pin-container").style.display = "none";
+            document.querySelector(".envelope").style.display = "grid";
+        } else {
+            errorMsg.textContent = "Wrong PIN 💔 Try again!";
+        }
+    }
+
+    // Make function global (for button onclick)
+    window.checkPin = checkPin;
+
+    const pinInput = document.getElementById("pinInput");
     if (pinInput) {
         pinInput.addEventListener("keypress", function (e) {
             if (e.key === "Enter") {
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ===============================
-       FLOATING HEARTS BACKGROUND
+       FLOATING HEARTS
     ================================= */
 
     function createFloatingHeart() {
@@ -71,4 +73,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setInterval(createFloatingHeart, 400);
+
 });
